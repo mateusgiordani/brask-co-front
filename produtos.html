@@ -14,10 +14,10 @@
     <main class="overflow-x-hidden">
         <header class="bg-black text-white">
             <!-- navbar -->
-            <div class="max-w-4xl mx-auto py-2">
+            <div class="max-w-5xl mx-auto py-2">
                 <nav class="border-gray-200 px-2">
                     <div class="container mx-auto flex flex-wrap justify-between ">
-                        <a href="#" class="flex">
+                        <a href="/" class="flex">
 
                             <img src="public/assets/imgs/brasco.svg" class="bg-white" alt="" style="height: 2rem;" />
                             <span class="self-center text-lg font-semibold whitespace-nowrap">Brask Co</span>
@@ -118,26 +118,26 @@
         </header>
 
         <!-- card produtos -->
-        <section class="max-w-4xl mx-auto py-2" style="min-height: 800px;">
-          <button class="my-4" id="load-more-button">Carregar mais produtos</button>
+        <section class="max-w-5xl mx-auto py-2" style="min-height: 800px;">
+            <button class="my-4 load-more-button">Carregar mais produtos</button>
 
             <div class="text-center">
                 <h2 class="text-3xl font-semibold">Nossos Produtos</h2>
-             
-            </div>
-            <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
             </div>
-            <button class="my-4" id="load-more-button">Carregar mais produtos</button>
+            <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+            </div>
+            <button class="my-4 load-more-button">Carregar mais produtos</button>
 
         </section>
 
 
-  
+
 
 
         <footer class="bg-black text-white py-4">
-            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-2">
+            <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between px-2">
                 <div class="text-center md:text-left mb-4 md:mb-0">
 
                     <div class="flex">
@@ -172,16 +172,16 @@
         // Get the container element where the product cards will be added
         const productContainer = document.getElementById('product-container');
         // Get the "Load More" button element
-        const loadMoreButton = document.getElementById('load-more-button');
+        const loadMoreButtons = document.getElementsByClassName('load-more-button');
 
         let currentPage = 1;
-        const cardsPerPage = 3;
+        const cardsPerPage = 4;
         let products = [];
 
         function renderProductCard(product) {
             // Create the card element
             const card = document.createElement('div');
-            card.classList.add('block', 'rounded-lg', 'bg-white', 'p-6', 'shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]', 'dark:bg-neutral-700');
+            card.classList.add('flex', 'flex-col', 'justify-between', 'h-full', 'block', 'rounded-lg', 'bg-white', 'p-6', 'shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]', 'dark:bg-neutral-700');
 
             // Create the image element
             const image = document.createElement('img');
@@ -192,32 +192,42 @@
 
             // Create the title element
             const title = document.createElement('h5');
-            title.classList.add('my-4', 'text-xl', 'font-medium', 'leading-tight', 'text-neutral-800', 'dark:text-neutral-50', 'text-center', 'font-bold');
+            title.classList.add('text-base', 'leading-tight', 'text-neutral-800', 'dark:text-neutral-50', 'text-center', 'font-bold');
             title.textContent = product.name;
 
             // Create the description element
             const description = document.createElement('p');
-            description.classList.add('mb-4', 'text-base', 'text-neutral-600', 'dark:text-neutral-200');
+            description.classList.add('precoProduto', 'text-base', 'text-neutral-600', 'dark:text-neutral-200');
             description.textContent += "R$ " + product.price;
-
 
             // Create the button element
             const button = document.createElement('button');
             button.type = 'button';
-            button.classList.add('inline-block', 'rounded', 'bg-primary', 'px-6', 'pb-2', 'pt-2.5', 'text-xs', 'font-medium', 'uppercase', 'leading-normal', 'text-white', 'shadow-[0_4px_9px_-4px_#3b71ca]', 'transition', 'duration-150', 'ease-in-out', 'hover:bg-primary-600', 'hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'focus:bg-primary-600', 'focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'focus:outline-none', 'focus:ring-0', 'active:bg-primary-700', 'active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)]', 'dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]', 'dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]', 'dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]');
+            button.classList.add('saibaMaisButton', 'mt-4', 'inline-block', 'rounded', 'bg-primary', 'px-6', 'pb-2', 'pt-2.5', 'text-xs', 'font-medium', 'uppercase', 'leading-normal', 'text-white', 'shadow-[0_4px_9px_-4px_#3b71ca]', 'transition', 'duration-150', 'ease-in-out', 'hover:bg-primary-600', 'hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'focus:bg-primary-600', 'focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'focus:outline-none', 'focus:ring-0', 'active:bg-primary-700', 'active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)]', 'dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]', 'dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]', 'dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]');
             button.setAttribute('data-te-ripple-init', '');
             button.setAttribute('data-te-ripple-color', 'light');
             button.textContent = 'Saiba mais';
 
+            // Create a new div element
+            const div = document.createElement('div');
+
+            // Append the description and the button to the div
+            div.appendChild(description);
+            div.appendChild(button);
+
             // Append the elements to the card
             card.appendChild(image);
             card.appendChild(title);
-            card.appendChild(description);
-            card.appendChild(button);
+            card.appendChild(div);
 
             // Append the card to the product container
             productContainer.appendChild(card);
         }
+
+
+
+
+
 
         function loadMoreCards() {
             const startIndex = (currentPage - 1) * cardsPerPage;
@@ -230,10 +240,19 @@
             currentPage++;
 
             if (endIndex >= products.length) {
-                loadMoreButton.style.display = 'none';
+                // Hide all load more buttons
+                for (let button of loadMoreButtons) {
+                    button.style.display = 'none';
+                }
             }
             lazyLoadInstance.update();
         }
+
+        // Add event listener to each load more button
+        for (let button of loadMoreButtons) {
+            button.addEventListener('click', loadMoreCards);
+        }
+
 
         // Fetch the JSON file
         fetch('/public/assets/produtos.json')

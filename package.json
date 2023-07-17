@@ -1,7 +1,7 @@
 {
   "name": "brask-co-front",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.5.0",
   "type": "module",
   "homepage": "https:/mateusgiordani.github.io/brask-co-front/",
   "scripts": {
