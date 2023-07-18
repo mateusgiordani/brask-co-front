@@ -54,7 +54,7 @@
                                     <a href="#" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-red-500 md:p-0">Sobre</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-red-500 md:p-0">Produtos</a>
+                                    <a href="produtos.html" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-red-500 md:p-0">Produtos</a>
                                 </li>
                                 <li>
                                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-red-500 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Contato
@@ -118,8 +118,8 @@
         </header>
 
         <!-- card produtos -->
-        <section class="max-w-5xl mx-auto py-2" style="min-height: 800px;">
-            <button class="my-4 load-more-button">Carregar mais produtos</button>
+        <section class="max-w-5xl mx-auto py-2 flex flex-col" style="min-height: 800px;">
+            <button class="my-4 load-more-button self-end">Carregar mais produtos</button>
 
             <div class="text-center">
                 <h2 class="text-3xl font-semibold">Nossos Produtos</h2>
@@ -128,7 +128,7 @@
             <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
             </div>
-            <button class="my-4 load-more-button">Carregar mais produtos</button>
+            <button class="my-4 load-more-button self-end">Carregar mais produtos</button>
 
         </section>
 
@@ -179,54 +179,55 @@
         let products = [];
 
         function renderProductCard(product) {
-            // Create the card element
-            const card = document.createElement('div');
-            card.classList.add('flex', 'flex-col', 'justify-between', 'h-full', 'block', 'rounded-lg', 'bg-white', 'p-6', 'shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]', 'dark:bg-neutral-700');
+    // Create the card element
+    const card = document.createElement('div');
+    card.classList.add('flex', 'flex-col', 'justify-between', 'h-full', 'block', 'rounded-lg', 'bg-white', 'p-6', 'shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]', 'dark:bg-neutral-700');
 
-            // Create the image element
-            const image = document.createElement('img');
-            image.src = product.image_temp;
-            image.classList.add("lazy");
-            image.dataset.src = product.image
-            image.alt = product.name;
+    // Create the image element
+    const image = document.createElement('img');
+    image.src = product.image_temp;
+    image.classList.add("lazy");
+    image.dataset.src = product.image
+    image.alt = product.name;
 
-            // Create the title element
-            const title = document.createElement('h5');
-            title.classList.add('text-base', 'leading-tight', 'text-neutral-800', 'dark:text-neutral-50', 'text-center', 'font-bold');
-            title.textContent = product.name;
+    // Create the title element
+    const title = document.createElement('h5');
+    title.classList.add('text-base', 'leading-tight', 'text-neutral-800', 'dark:text-neutral-50', 'text-center', 'font-bold');
+    title.textContent = product.name;
 
-            // Create the description element
-            const description = document.createElement('p');
-            description.classList.add('precoProduto', 'text-base', 'text-neutral-600', 'dark:text-neutral-200');
-            description.textContent += "R$ " + product.price;
+    // Create the description element
+    const description = document.createElement('p');
+    description.classList.add('precoProduto', 'text-base', 'text-neutral-600', 'dark:text-neutral-200');
+    description.textContent += "R$ " + product.price;
 
-            // Create the button element
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.classList.add('saibaMaisButton', 'mt-4', 'inline-block', 'rounded', 'bg-primary', 'px-6', 'pb-2', 'pt-2.5', 'text-xs', 'font-medium', 'uppercase', 'leading-normal', 'text-white', 'shadow-[0_4px_9px_-4px_#3b71ca]', 'transition', 'duration-150', 'ease-in-out', 'hover:bg-primary-600', 'hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'focus:bg-primary-600', 'focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'focus:outline-none', 'focus:ring-0', 'active:bg-primary-700', 'active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]', 'dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)]', 'dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]', 'dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]', 'dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]');
-            button.setAttribute('data-te-ripple-init', '');
-            button.setAttribute('data-te-ripple-color', 'light');
-            button.textContent = 'Saiba mais';
+    // Create the button element
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.classList.add('saibaMaisButton', 'mt-4', 'inline-block', 'rounded', 'bg-danger', 'px-6', 'pb-2', 'pt-2.5', 'text-xs', 'font-medium', 'uppercase', 'leading-normal', 'text-white', 'shadow-[0_4px_9px_-4px_#dc4c64]', 'transition', 'duration-150', 'ease-in-out', 'hover:bg-danger-600', 'hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]', 'focus:bg-danger-600', 'focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]', 'focus:outline-none', 'focus:ring-0', 'active:bg-danger-700', 'active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]', 'dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)]', 'dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]', 'dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]', 'dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]');
+    button.setAttribute('data-te-ripple-init', '');
+    button.setAttribute('data-te-ripple-color', 'light');
+    button.textContent = 'Saiba mais';
 
-            // Create a new div element
-            const div = document.createElement('div');
+    // Create the anchor element
+    const anchor = document.createElement('a');
+    anchor.href = product.url; // Set the href attribute to the product's URL
+    anchor.appendChild(button); // Append the button to the anchor element
 
-            // Append the description and the button to the div
-            div.appendChild(description);
-            div.appendChild(button);
+    // Create a new div element
+    const div = document.createElement('div');
 
-            // Append the elements to the card
-            card.appendChild(image);
-            card.appendChild(title);
-            card.appendChild(div);
+    // Append the description and the anchor to the div
+    div.appendChild(description);
+    div.appendChild(anchor); // Append the anchor instead of the button
 
-            // Append the card to the product container
-            productContainer.appendChild(card);
-        }
+    // Append the elements to the card
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(div);
 
-
-
-
+    // Append the card to the product container
+    productContainer.appendChild(card);
+}
 
 
         function loadMoreCards() {
@@ -269,7 +270,7 @@
         loadMoreButton.addEventListener('click', loadMoreCards);
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.4/dist/lazyload.min.js"></script>
+    <script src="public/assets/js/cdn.jsdelivr.net_npm_vanilla-lazyload@17.8.4_dist_lazyload.min.js"></script>
 
     <script>
         var lazyLoadInstance = new LazyLoad({
